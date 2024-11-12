@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stlye.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>DAZZLE.CAMBO</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" id="cartLink">Cart (0)</a></li> <!-- Cart link updated to reflect dynamic cart count -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="product-list">
+            <!-- Product Cards -->
+            <div class="product-card">
+                <img src="img/download (4)/download (1).jpg" alt="Product 1">
+                <h2>Product 1</h2>
+                <p>$19.99</p>
+                <button class="add-to-cart" data-name="Product 1" data-price="19.99">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="img/download (4)/download (10).jpg" alt="Product 2">
+                <h2>Product 2</h2>
+                <p>$29.99</p>
+                <button class="add-to-cart" data-name="Product 2" data-price="29.99">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="img/download (4)/download (10).jpg" alt="Product 3">
+                <h2>Product 3</h2>
+                <p>$39.99</p>
+                <button class="add-to-cart" data-name="Product 3" data-price="39.99">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="img/download (4)/download (10).jpg" alt="Product 4">
+                <h2>Product 4</h2>
+                <p>$49.99</p>
+                <button class="add-to-cart" data-name="Product 4" data-price="49.99">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="img/download (4)/download (10).jpg" alt="Product 5">
+                <h2>Product 5</h2>
+                <p>$59.99</p>
+                <button class="add-to-cart" data-name="Product 5" data-price="59.99">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="img/download (4)/download (10).jpg" alt="Product 6">
+                <h2>Product 6</h2>
+                <p>$69.99</p>
+                <button class="add-to-cart" data-name="Product 6" data-price="69.99">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="img/download (4)/download (10).jpg" alt="Product 7">
+                <h2>Product 7</h2>
+                <p>$79.99</p>
+                <button class="add-to-cart" data-name="Product 7" data-price="79.99">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="img/download (4)/download (10).jpg" alt="Product 8">
+                <h2>Product 8</h2>
+                <p>$89.99</p>
+                <button class="add-to-cart" data-name="Product 8" data-price="89.99">Add to Cart</button>
+            </div>
+            <!-- More product cards can go here -->
+        </section>
+
+        <section class="cart-summary">
+            <h2>Shopping Cart</h2>
+            <p>Your cart is empty.</p>
+            <button>Proceed to Checkout</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; DAZZLE.CAMBO Local Brand In Cambodia.</p>
+        <div class="social-media">
+            <a href="https://web.facebook.com/Snaky24/">Facebook: DAZZLE.CAMBO</a>
+            <a href="https://www.instagram.com/p.piktik4/">Instagram: Tik</a>
+            <a href="https://t.me/snakyy2424">Telegram: SinPete</a>
+        </div>
+    </footer>
+
+    <script>
+        let cart = []; // Array to hold cart items
+
+        // Function to add products to cart
+        function addToCart(productName, productPrice) {
+            // Push product object to cart
+            cart.push({ name: productName, price: parseFloat(productPrice) });
+            updateCart();
+        }
+
+        // Function to update the cart summary
+        function updateCart() {
+            const cartSummary = document.querySelector('.cart-summary p');
+            const cartLink = document.querySelector('#cartLink');
+            
+            // Update cart count in navigation
+            cartLink.textContent = `Cart (${cart.length})`;
+
+            // Calculate total price
+            let total = 0;
+            cart.forEach(item => total += item.price);
+
+            // Update cart summary display
+            if (cart.length > 0) {
+                cartSummary.innerHTML = `Total: $${total.toFixed(2)} (${cart.length} items)`;
+            } else {
+                cartSummary.innerHTML = 'Your cart is empty.';
+            }
+        }
+
+        // Attach event listeners to each "Add to Cart" button
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.getAttribute('data-name');
+                const productPrice = this.getAttribute('data-price');
+                addToCart(productName, productPrice);
+            });
+        });
+    </script>
+</body>
+
+</html>
